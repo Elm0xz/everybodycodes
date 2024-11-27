@@ -1,4 +1,4 @@
-package com.pretz.everybodycodes;
+package com.pretz.everybodycodes.q1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -6,16 +6,16 @@ import java.util.Objects;
 public class Main {
     public static void main(String[] args) {
         try {
-            System.out.println(parseAndReturn(args));
+            System.out.println(solve(args));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static int parseAndReturn(String[] args) throws IOException {
+    private static int solve(String[] args) throws IOException {
         return Objects.requireNonNull(
-                        ParserBuilder.build(Integer.parseInt(args[0]))
+                        SolverBuilder.build(Integer.parseInt(args[0]))
                 )
-                .parse(args[1]);
+                .solve(args[1]);
     }
 }

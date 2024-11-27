@@ -1,19 +1,19 @@
-package com.pretz.everybodycodes;
+package com.pretz.everybodycodes.q1;
 
 import java.io.IOException;
 import java.io.StringReader;
 
-class ParserP2 implements Parser {
+class SolverP2 implements Solver {
 
     @Override
-    public int parse(String input) throws IOException {
+    public int solve(String input) throws IOException {
         int result = 0;
         StringReader reader = new StringReader(input);
         int newChar0;
         int newChar1;
         while ((newChar0 = reader.read()) != -1 && (newChar1 = reader.read()) != -1) {
             String newPair = (char) newChar0 + "" + (char) newChar1;
-            int pairResult = parsePair(newPair);
+            int pairResult = solvePair(newPair);
             System.out.println(pairResult);
             result += pairResult;
             System.out.println(newPair);
@@ -21,10 +21,10 @@ class ParserP2 implements Parser {
         return result;
     }
 
-    private int parsePair(String inputPair) {
+    private int solvePair(String inputPair) {
         int pairBonus = 2;
-        int value0 = parseChar(inputPair.charAt(0));
-        int value1 = parseChar(inputPair.charAt(1));
+        int value0 = solveChar(inputPair.charAt(0));
+        int value1 = solveChar(inputPair.charAt(1));
         if (value0 == -1 && value1 == -1) {
             return 0;
         }
@@ -35,7 +35,7 @@ class ParserP2 implements Parser {
         } else return value0 + value1 + pairBonus;
     }
 
-    private int parseChar(char inputChar) {
+    private int solveChar(char inputChar) {
         if (inputChar == 'A') return 0;
         else if (inputChar == 'B') return 1;
         else if (inputChar == 'C') return 3;

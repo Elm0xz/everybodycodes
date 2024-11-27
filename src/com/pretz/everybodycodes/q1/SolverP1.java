@@ -1,23 +1,23 @@
-package com.pretz.everybodycodes;
+package com.pretz.everybodycodes.q1;
 
 import java.io.IOException;
 import java.io.StringReader;
 
-class ParserP1 implements Parser {
+class SolverP1 implements Solver {
 
     @Override
-    public int parse(String input) throws IOException {
+    public int solve(String input) throws IOException {
         int result = 0;
         StringReader reader = new StringReader(input);
         int newChar;
         while ((newChar = reader.read()) != -1) {
-            result += parseChar((char) newChar);
+            result += solveChar((char) newChar);
             //System.out.println((char) newChar);
         }
         return result;
     }
 
-    private int parseChar(char inputChar) {
+    private int solveChar(char inputChar) {
         if (inputChar == 'A') return 0;
         else if (inputChar == 'B') return 1;
         else if (inputChar == 'C') return 3;

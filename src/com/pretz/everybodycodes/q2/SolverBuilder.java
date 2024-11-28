@@ -7,6 +7,8 @@ public class SolverBuilder {
             return new SolverP1();
         } else if (id == 2) {
             return new SolverP2();
-        } else return null;
+        } else if (id == 3) {
+            return new SolverP3();
+        }else return null;
     }
 }

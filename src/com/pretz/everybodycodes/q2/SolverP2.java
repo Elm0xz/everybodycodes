@@ -36,15 +36,12 @@ public class SolverP2 implements Solver {
             }
             System.out.println(symbols.length + Arrays.toString(symbols));
         }
-        ;
         return result;
     }
 
     private static String[] parseWords(String input) {
-        String[] inputArray = input.split(","); //placeholder for line end
-        //System.out.println(inputArray.length + Arrays.toString(inputArray));
+        String[] inputArray = input.split(",");
         String[] reverseInputArray = Arrays.stream(inputArray).map(s -> new StringBuilder(s).reverse().toString()).toArray(String[]::new);
-        //System.out.println(reverseInputArray.length + Arrays.toString(reverseInputArray));
         List<String> inputList = new ArrayList<>(inputArray.length + reverseInputArray.length);
         Collections.addAll(inputList, inputArray);
         Collections.addAll(inputList, reverseInputArray);

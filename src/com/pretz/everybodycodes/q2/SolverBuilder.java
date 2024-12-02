@@ -9,6 +9,6 @@ public class SolverBuilder {
             return new SolverP2();
         } else if (id == 3) {
             return new SolverP3();
-        }else return null;
+        } else return null;
     }
 }

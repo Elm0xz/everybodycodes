@@ -6,10 +6,39 @@ public class SolverP1 implements Solver {
 
     @Override
     public int solve(String input) throws IOException {
-        //TODO (1) change all hashes to 1
-        //TODO (2) change all 1s with all adjacent 1 to 2
-        //TODO (3) change all 2s with all adjacent 2s to 3
-        //TODO (...) etc -> can resize rectangle of interest when getting deeper
-        return 0;
+        String[] inputArray = input.split("\n");
+
+        int[][] inputChars = new int[inputArray.length][inputArray[0].length()];
+
+
+        int sum = 0;
+        for (int i = 0; i < inputArray.length; i++) {
+            for (int j = 0; j < inputArray[i].length(); j++) {
+                if (inputArray[i].charAt(j) == '.') {
+                    inputChars[i][j] = 0;
+                } else if (inputArray[i].charAt(j) == '#') {
+                    inputChars[i][j] = 1;
+                    sum++;
+                }
+            }
+        }
+
+        int level = 1;
+        boolean levelChanged = true;
+        while (levelChanged) {
+            levelChanged = false;
+            for (int i = 1; i < inputChars.length - 1; i++) {
+                for (int j = 1; j < inputChars[i].length - 1; j++) {
+                    if ((inputChars[i][j - 1] >= level) && (inputChars[i][j + 1] >= level) &&
+                            (inputChars[i - 1][j] >= level) && (inputChars[i + 1][j] >= level)) {
+                        levelChanged = true;
+                        sum++;
+                        inputChars[i][j] = level + 1;
+                    }
+                }
+            }
+            level++;
+        }
+        return sum;
     }
 }

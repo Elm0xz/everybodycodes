@@ -1,5 +1,6 @@
 package com.pretz.everybodycodes.q3;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -16,6 +17,6 @@ public class Main {
         return Objects.requireNonNull(
                         SolverBuilder.build(Integer.parseInt(args[0]))
                 )
-                .solve(args[1], args[2]);
+                .solve(InputFileParser.parse(args[1]));
     }
 }

@@ -1,4 +1,4 @@
-package com.pretz.everybodycodes.q3;
+package com.pretz.everybodycodes.q4;
 
 import com.pretz.everybodycodes.InputFileParser;
 
@@ -18,6 +18,6 @@ public class Main {
         return Objects.requireNonNull(
                         SolverBuilder.build(Integer.parseInt(args[0]))
                 )
-                .solve(InputFileParser.parseToString(args[1]));
+                .solve(InputFileParser.parseToIntArray(args[1]));
     }
 }

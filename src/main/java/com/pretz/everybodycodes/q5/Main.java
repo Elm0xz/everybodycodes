@@ -14,7 +14,7 @@ public class Main {
         }
     }
 
-    private static int solve(String[] args) throws IOException {
+    private static long solve(String[] args) throws IOException {
         return Objects.requireNonNull(
                         SolverBuilder.build(Integer.parseInt(args[0]))
                 )

@@ -16,7 +16,7 @@ public class SolverP1 implements Solver {
     }
 
     @Override
-    public int solve(List<ArrayList<Integer>> inputList) throws IOException {
+    public long solve(List<ArrayList<Integer>> inputList) throws IOException {
 
         List<ArrayList<Integer>> resultList = List.of(
                 new ArrayList<>(inputList.get(0)),

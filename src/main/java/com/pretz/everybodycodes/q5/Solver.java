@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Solver {
 
-    int solve(List<ArrayList<Integer>> input) throws IOException;
+    long solve(List<ArrayList<Integer>> input) throws IOException;
 }

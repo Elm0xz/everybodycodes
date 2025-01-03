@@ -7,6 +7,8 @@ import java.util.Objects;
 public class Tree {
 
     private final String id;
+
+
     private final List<Tree> children;
 
     public Tree(String id) {
@@ -16,6 +18,14 @@ public class Tree {
 
     public void addChild(Tree child) {
         children.add(child);
+    }
+
+    public String id() {
+        return id;
+    }
+
+    public List<Tree> children() {
+        return List.copyOf(children);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.pretz.everybodycodes.q3;
 
-import com.pretz.everybodycodes.InputFileParser;
-
 import java.io.IOException;
 import java.util.Objects;
 

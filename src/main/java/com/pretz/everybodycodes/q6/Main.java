@@ -12,10 +12,10 @@ public class Main {
         }
     }
 
-    private static long solve(String[] args) throws IOException {
+    private static String solve(String[] args) throws IOException {
         return Objects.requireNonNull(
                         SolverBuilder.build(Integer.parseInt(args[0]))
                 )
-                .solve(InputFileParser.parseTo2dIntList(args[1]));
+                .solve(InputFileParser.parseToTree(args[1]));
     }
 }

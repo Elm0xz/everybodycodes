@@ -6,17 +6,11 @@ import java.util.List;
 
 public class SolverP1 implements Solver {
 
-    private final String debugOutput;
     private final HashMap<Integer, List<String>> results = new HashMap<>();
-
-    public SolverP1(String debugOutput) {
-        this.debugOutput = debugOutput;
-    }
 
     @Override
     public String solve(Tree tree) {
         search(tree, "", 0);
-        HashMap<Integer, Integer> lengths = new HashMap<>();
         return results.values().stream()
                 .filter(list -> list.size() == 1)
                 .map(List::getFirst)

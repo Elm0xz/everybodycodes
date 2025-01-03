@@ -7,7 +7,7 @@ import java.util.List;
 public class SolverP1 implements Solver {
 
     private final String debugOutput;
-    private final List<String> results = new ArrayList<>();
+    private final HashMap<Integer, List<String>> results = new HashMap<>();
 
     public SolverP1(String debugOutput) {
         this.debugOutput = debugOutput;
@@ -15,27 +15,33 @@ public class SolverP1 implements Solver {
 
     @Override
     public String solve(Tree tree) {
-        search(tree, "");
+        search(tree, "", 0);
         HashMap<Integer, Integer> lengths = new HashMap<>();
-        for (String result : results) {
-            if (!lengths.containsKey(result.length())) {
-                lengths.put(result.length(), 1);
-            } else {
-                lengths.put(result.length(), lengths.get(result.length()) + 1);
-            }
-
-        }
-        return results.get(0); //TODO fix this method to return solution -> I solved it on debugger
+        return results.values().stream()
+                .filter(list -> list.size() == 1)
+                .map(List::getFirst)
+                .toList()
+                .getFirst();
     }
 
-    private String search(Tree tree, String path) {
+    private String search(Tree tree, String path, int nestLevel) {
         String newPath = tree.id();
         if (newPath.equals("@")) {
-            results.add(path + newPath);
+            if (results.get(nestLevel) == null) {
+                results.put(nestLevel, List.of(path + newPath));
+            } else {
+                results.put(nestLevel, addToLIst(nestLevel, path + newPath));
+            }
         }
         for (Tree branch : tree.children()) {
-            newPath = search(branch, path + tree.id());
+            newPath = search(branch, path + tree.id(), nestLevel + 1);
         }
         return newPath;
+    }
+
+    private List<String> addToLIst(int nestLevel, String path) {
+        List<String> result = new ArrayList<>(results.get(nestLevel));
+        result.add(path);
+        return result;
     }
 }

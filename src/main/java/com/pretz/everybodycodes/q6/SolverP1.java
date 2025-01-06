@@ -28,6 +28,7 @@ public class SolverP1 implements Solver {
             }
         }
         for (Tree branch : tree.children()) {
+            System.out.println(branch.id());
             newPath = search(branch, path + tree.id(), nestLevel + 1);
         }
         return newPath;

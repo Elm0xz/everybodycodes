@@ -13,29 +13,50 @@ public class InputFileParser {
         HashMap<String, Tree> trees = new HashMap<>();
         Scanner sc = new Scanner(new File(inputFile));
         while (sc.hasNextLine()) {
+            boolean treeInfested = false;
             String rawTree = sc.nextLine();
             String[] rawTreeArray = rawTree.split(delimiterPattern().toString());
             String treeId = rawTreeArray[0];
-            Tree tree;
-            if (trees.containsKey(treeId)) {
-                tree = trees.get(treeId);
-            } else {
-                tree = new Tree(treeId);
-                trees.put(treeId, tree);
+            if (isPest(treeId)) {
+                treeInfested = true;
             }
-            for (int i = 1; i < rawTreeArray.length; i++) {
-                Tree branch;
-                String branchId = rawTreeArray[i];
-                if (trees.containsKey(branchId)) {
-                    branch = trees.get(branchId);
-                } else {
-                    branch = new Tree(branchId);
-                    trees.put(branchId, branch);
-                }
-                tree.addChild(branch);
+            if (!treeInfested) {
+                parseTree(trees, treeId, rawTreeArray);
             }
         }
         return trees.get("RR");
+    }
+
+    private static void parseTree(HashMap<String, Tree> trees, String treeId, String[] rawTreeArray) {
+        Tree tree;
+        if (trees.containsKey(treeId)) {
+            tree = trees.get(treeId);
+        } else {
+            tree = new Tree(treeId);
+            trees.put(treeId, tree);
+        }
+        for (int i = 1; i < rawTreeArray.length; i++) {
+            String branchId = rawTreeArray[i];
+            boolean branchInfested = isPest(branchId);
+            if (!branchInfested) {
+                parseBranch(trees, branchId, tree);
+            }
+        }
+    }
+
+    private static void parseBranch(HashMap<String, Tree> trees, String branchId, Tree tree) {
+        Tree branch;
+        if (trees.containsKey(branchId)) {
+            branch = trees.get(branchId);
+        } else {
+            branch = new Tree(branchId);
+            trees.put(branchId, branch);
+        }
+        tree.addChild(branch);
+    }
+
+    private static boolean isPest(String treeId) {
+        return treeId.equals("BUG") || treeId.equals("ANT");
     }
 
     private static Pattern delimiterPattern() {

@@ -4,7 +4,9 @@ public class SolverBuilder {
 
     public static Solver build(int id) {
         if (id == 1) {
-            return new SolverP1("src/main/resources/q6/debug_output.txt");
+            return new SolverP1();
+        } else if (id == 2) {
+            return new SolverP2();
         } else return null;
     }
 }
